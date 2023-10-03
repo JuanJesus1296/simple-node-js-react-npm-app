@@ -14,6 +14,12 @@ pipeline {
       }
     }
 
+    stage('Compilando...') {
+      steps {
+        sh 'npm build'
+      }
+    }
+
     stage('Testeando...') {
       steps {
         sh 'npm test'
@@ -23,7 +29,7 @@ pipeline {
     stage('Desplegando en Servidor...') {
       steps {
         withCredentials([sshUserPrivateKey(credentialsId: "WebFinance-ssh", keyFileVariable: "keyHost")]) { 
-          sh 'echo ok'
+          sh 'rsync -e "ssh -i $keyHost" -avz build/ ansible@192.168.0.17:/var/www/html/webFinance'
         }
       }
     }
