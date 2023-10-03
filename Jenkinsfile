@@ -19,6 +19,12 @@ pipeline {
         sh 'npm test'
       }
     }
+
+    withCredentials([sshUserPrivateKey(credentialsId: "WebFinance-ssh", keyFileVariable: "keyHost")]) {
+      stage('Desplegando en Servidor...') {
+        sh 'echo ok'
+      }
+    }
     
   }
   
