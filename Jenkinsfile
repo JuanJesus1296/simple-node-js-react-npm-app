@@ -20,9 +20,11 @@ pipeline {
       }
     }
 
-    withCredentials([sshUserPrivateKey(credentialsId: "WebFinance-ssh", keyFileVariable: "keyHost")]) {
-      stage('Desplegando en Servidor...') {
-        sh 'echo ok'
+    stage('Desplegando en Servidor...') {
+      steps {
+        withCredentials([sshUserPrivateKey(credentialsId: "WebFinance-ssh", keyFileVariable: "keyHost")]) { 
+          sh 'echo ok'
+        }
       }
     }
     
