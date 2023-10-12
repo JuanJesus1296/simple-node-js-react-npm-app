@@ -26,13 +26,7 @@ pipeline {
       }
     }
 
-    stage('Desplegando en Servidor...') {
-      steps {
-        withCredentials([sshUserPrivateKey(credentialsId: "WebFinance-ssh", keyFileVariable: "keyHost")]) { 
-          sh 'rsync -e "ssh -i $keyHost -o StrictHostKeyChecking=no" -avz build/ ansible@192.168.0.17:/var/www/html/webFinance'
-        }
-      }
-    }
+
     
   }
   
