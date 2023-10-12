@@ -17,7 +17,7 @@ pipeline {
     stage('Compilando...') {
       steps {
         sh 'npm run build'
-        fingerprint 'target/my-webapp (1).war'
+        fingerprint 'my-webapp (1).war'
       }
     }
 
